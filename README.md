@@ -96,8 +96,74 @@ Prototype and build IoT systems without setting up servers or developing web sof
 
  
 # PROGRAM:
+```
+DEVELOPED BY: A PRANEYA
+REFERENCE NO:24900343
+```
+```
+#include"ThingSpeak.h"
+#include <WiFi.h>
+#define echoPin 25
+#define trigPin 26
+
+char ssid[]="Redmi Note 13";
+char pass[]="XXXX";
+const int t=25;
+WiFiClient client;
+unsigned long myChannelField = 2787745;
+const int ChannelField1 = 1 ; 
+const char *myWriteAPIKey="LAX1NFRRAMBCBGMF";
+long duration;
+int distance;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT);
+  WiFi.mode(WIFI_STA);
+  ThingSpeak.begin(client);
+  delay(1000);
+}
+
+void loop()
+{
+  if(WiFi.status()!=WL_CONNECTED)
+  {
+    Serial.print("Attempting to connet to SSID: "); 
+    Serial.println(ssid);
+    while(WiFi.status() != WL_CONNECTED)
+    {
+      WiFi.begin(ssid, pass);
+      Serial.print(".");
+      delay(5000);
+    }
+    Serial.println("\nConnected");
+    
+  }
+  digitalWrite(trigPin,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin,LOW);
+  
+  duration=pulseIn(echoPin,HIGH);
+  distance=(duration*0.034/2);
+  Serial.print("Distance : ");
+  Serial.print(distance);
+  Serial.println(" cm ");
+  ThingSpeak.writeField(myChannelField, ChannelField1, distance, myWriteAPIKey);
+  delay(1000);
+}
+```
 # CIRCUIT DIAGRAM:
+
+![Screenshot 2024-12-30 142129](https://github.com/user-attachments/assets/a85510ee-e16c-4ac6-adac-3ca3d5c750aa)
+
+
 # OUTPUT:
+
+![DHT11-sensor_cloudOP](https://github.com/user-attachments/assets/47581dea-b525-481e-a6e8-29b2ff9cbea9)
+
 # RESULT:
 Thus the distance values are updated in the Thing speak cloud using ESP32 controller.
 
