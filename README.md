@@ -162,7 +162,10 @@ void loop()
 
 # OUTPUT:
 
-![DHT11-sensor_cloudOP](https://github.com/user-attachments/assets/47581dea-b525-481e-a6e8-29b2ff9cbea9)
+![Screenshot 2024-12-17 090648](https://github.com/user-attachments/assets/c7218ec7-0d98-44a7-b944-b383dac283c2)
+
+
+![Screenshot 2024-12-17 090717](https://github.com/user-attachments/assets/aa010fc7-25b0-47a5-b45f-4a94e4c9579c)
 
 # RESULT:
 Thus the distance values are updated in the Thing speak cloud using ESP32 controller.
